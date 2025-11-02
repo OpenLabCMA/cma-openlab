@@ -1,1 +1,1 @@
-# cma-lab-wiki
+# cma-openlab-wiki
