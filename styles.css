@@ -1,12 +1,168 @@
-body{
-background-color: blueviolet;
+body {
+    margin: 0;
+    display: flex;
+    background-color: transparent;
+    /* gradient (top) then image (below). Use rgba for alpha values. */
+    background-image: url(images/hero.png);
+    background-position: center 35%;
+    background-repeat: no-repeat;
+    background-size: 118% auto;
+    min-height: 100vh;
+    background-attachment: fixed;
+    /* avoid negative z-index on body which can hide the background */
 }
 
-h1{
-    color:white;
-    font-family: "open-sans", sans-serif;
+
+.top-tabs {
+    position: fixed;
+    top: 8%;
+    left: 0.25%;
+    z-index: 9999;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    user-select: none;
 }
-p{
+
+.top-bar {
+    position: fixed;
+    width: 100%;
+    background: transparent;
+    background-color: #111827;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+.bottom-bar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 1.25%;
+    background: rgb(18, 24, 38);
     color: white;
-    font-family: "open-sans", sans-serif;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    z-index: 9999;
+}
+
+.top-bar .logo {
+    display: inline-block;
+    padding: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 24px;
+    color: white;
+    font-family: "helvetica-neue", sans-serif;
+
+}
+
+.top-tabs .tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 6px;
+    background: transparent;
+    color: #111827;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 20px;
+    text-decoration: none;
+    box-shadow: none;
+    transition: background .22s, color .22s;
+}
+
+.top-tabs .tab:hover {
+    background: rgba(18, 24, 38);
+    border-radius: 8px;
+    color: white;
+}
+
+.top-tabs .tab.active,
+.top-tabs .tab[aria-selected="true"] {
+    background: #111827;
+    color: #fff;
+    box-shadow: 0 6px 6px -6x rgba(0, 0, 0, 0.15);
+}
+
+.lang-switch {
+    position: fixed;
+    top: 1.5%;
+    right: 12px;
+    z-index: 9999;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    user-select: none;
+}
+
+.lang-switch button.toggle {
+    background: #111827;
+    color: #fff;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.lang-switch ul {
+    margin: 8px 0 0 0;
+    padding: 6px;
+    list-style: none;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    min-width: 120px;
+}
+
+.lang-switch li+li {
+    margin-top: 6px;
+}
+
+.lang-switch button.lang {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    padding: 6px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.lang-switch button.lang[aria-pressed="true"] {
+    background: #f3f4f6;
+    font-weight: 700;
+}
+
+.lang-switch [hidden] {
+    display: none;
+}
+/* Panels for the main tabs */
+.tab-panel {
+    position: fixed;
+    /* JS will compute top so panel sits just below the tabs */
+    top: 0;
+    width: calc(100% - 40px);
+    max-width: 1100px;
+    padding: 20px;
+    border-radius: 8px;
+    width: fit-content;
+    box-shadow: 0 5px 5px -5px rgba(2,6,23,0.22);
+    z-index: 8000;
+}
+
+
+.tab-panel p {
+    margin: 0;
+    color: rgb(18, 24, 38);
+    white-space: pre;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.5;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background-color: transparent;
+    border-radius: 4px;
+    padding: 0;
 }

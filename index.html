@@ -1,16 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>CMA OpenLab</title>
+    <title>Welcome to the CMA OpenLab!</title>
     <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
+    <div class="top-bar">
+        <a class="logo" href="index.html" aria-label="CMA OpenLab Home">
+            <img src="logo.png" alt="CMA OpenLab" />
+        </a>
+        <div class="lang-switch" id="langSwitch" aria-label="Language switcher">
+            <button class="toggle" id="langToggle" aria-haspopup="listbox" aria-expanded="false">EN ▾</button>
+            <ul id="langList" role="listbox" hidden>
+                <li><button class="lang" data-lang="en" role="option">English</button></li>
+                <li><button class="lang" data-lang="zh" role="option">Chinese</button></li>
+            </ul>
+        </div>
+    </div>
+ 
+
+    <nav class="top-tabs" aria-label="Main tabs">
+        <div role="tablist" aria-label="Main navigation">
+            <button class="tab" data-tab="intro" role="tab" aria-selected="false">About</button>
+            <button class="tab" data-tab="guidelines" role="tab" aria-selected="false">Guidelines</button>
+            <button class="tab" data-tab="staff" role="tab" aria-selected="false">Staff</button>
+            <button class="tab" data-tab="projects" role="tab" aria-selected="false">Projects</button>
+            <a class="tab" href="https://github.com/alakouzmin/cma-openlab/" target="_blank" rel="noopener" data-tab="repository">Repository</a>
+            <a class="tab" href="https://github.com/alakouzmin/cma-openlab/wiki/Openlab-Wiki" target="_blank" rel="noopener" data-tab="wiki">Wiki</a>
+            <a class="tab" href="https://docs.google.com/spreadsheets/d/1IwN4VrU-hbiJxZQ7BlM7I72yAnsFbIkCd6pqrpBkBpg/edit?usp=sharing" target="_blank" rel="noopener" data-tab="inventory">Inventory</a>
+        </div>
+
+    </nav>
     <main>
-        <h1>Hello world</h1>
-        <p>Test push</p>
+        <section id="introPanel" class="tab-panel" data-tabpanel="intro" hidden>
+            <p>
+The CMA OpenLab is a collaborative initiative focused on creative experimentation and open research. 
+Our mission is to create an inclusive environment where CMA students can prototype ideas and work on projects. 
+Be sure to complete the safety training and read the lab guidelines before getting started!
+            </p>
+        </section>
+        <section id="guidelinesPanel" class="tab-panel" data-tabpanel="guidelines" hidden>
+            <p>
+Lab guidelines and safety protocols.
+ 
+1. Be nice.
+2. Put stuff back.
+3. Clean up after yourself.
+
+            </p>
+        </section>
+
+        <section id="staffPanel" class="tab-panel" data-tabpanel="staff" hidden>
+            <p>
+Margaret Minsky - Faculty Advisor
+Nicolo Merendino - Faculty Advisor
+Yuri Kuzmin - Lab Manager
+            </p>
+        </section>
+
+        <section id="projectsPanel" class="tab-panel" data-tabpanel="projects" hidden>
+            <p>
+Pictures of previous projects.
+            </p>
+        </section>
     </main>
-    <script src="main.js" defer></script>
+
+    <script src="script.js" defer></script>
+
+<div class="bottom-bar">
+            <img src="logo.png" alt="Always Open. HKUST(GZ), E-2, CMA Lab" />
+    </div>
+
 </body>
+
 </html>

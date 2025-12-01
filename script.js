@@ -1,59 +1,51 @@
-/*
-    script.js
-    Fade text in from its parent's background color to its normal color over 3 seconds.
+// Simple tab-to-panel switcher for the main tabs
+document.addEventListener('DOMContentLoaded', () => {
+	const tabs = Array.from(document.querySelectorAll('.top-tabs [role="tab"]'));
+	const panels = Array.from(document.querySelectorAll('.tab-panel'));
 
-    Usage:
-        - Add class "fade-from-bg" to any element whose text should fade in.
-        - Optionally set data-duration-ms on the element to override the 3000ms default.
-*/
+		// Position panels directly under the visible .top-tabs element
+		function positionPanels() {
+			const topTabs = document.querySelector('.top-tabs');
+			if (!topTabs) return;
+			const rect = topTabs.getBoundingClientRect();
+			// rect.bottom is viewport coordinate; panels are fixed, so use it directly
+			const topPx = Math.ceil(rect.bottom);
+			panels.forEach(p => {
+				p.style.top = topPx + 'px';
+			});
+		}
 
-(function () {
-    const DEFAULT_DURATION = 3000;
+		// update on load and when viewport changes
+		window.addEventListener('resize', positionPanels);
+		window.addEventListener('orientationchange', positionPanels);
+		window.addEventListener('load', positionPanels);
 
-    function getEffectiveBackgroundColor(el) {
-        while (el && el !== document.documentElement) {
-            const bg = getComputedStyle(el).backgroundColor;
-            if (bg && bg !== 'transparent' && bg !== 'rgba(0, 0, 0, 0)') return bg;
-            el = el.parentElement;
-        }
-        // fallback
-        return getComputedStyle(document.documentElement).backgroundColor || 'white';
-    }
+	function activate(id) {
+		tabs.forEach(t => {
+			const isActive = t.dataset.tab === id;
+			t.setAttribute('aria-selected', String(Boolean(isActive)));
+			if (isActive) t.classList.add('active'); else t.classList.remove('active');
+		});
 
-    function fadeFromBackground(el, duration = DEFAULT_DURATION) {
-        // remember the final (computed) text color
-        const finalColor = getComputedStyle(el).color;
-        const bgColor = getEffectiveBackgroundColor(el.parentElement || el);
+		panels.forEach(p => {
+			p.hidden = p.dataset.tabpanel !== id;
+		});
+	}
 
-        // prepare element for transition
-        el.style.transition = `color ${duration}ms ease`;
-        el.style.webkitTransition = `color ${duration}ms ease`;
+	tabs.forEach(t => {
+		t.addEventListener('click', (e) => {
+			// only handle button tabs (external links are anchors)
+			if (t.tagName !== 'BUTTON') return;
+			const id = t.dataset.tab;
+			if (!id) return;
+			activate(id);
+		});
+	});
 
-        // start with background color (so text is invisible/blended)
-        el.style.color = bgColor;
+	// default: activate introduction if present
+	const defaultTab = tabs.find(t => t.dataset.tab === 'intro');
+	if (defaultTab) activate('intro');
 
-        // force reflow then set to final color to trigger transition
-        // using requestAnimationFrame to ensure the initial color is applied
-        requestAnimationFrame(() => {
-            // small timeout ensures transition occurs even when added very early
-            setTimeout(() => {
-                el.style.color = finalColor;
-            }, 10);
-        });
-    }
-
-    function init() {
-        const nodes = document.querySelectorAll('.fade-from-bg');
-        nodes.forEach(node => {
-            const durAttr = parseInt(node.getAttribute('data-duration-ms'), 10);
-            const duration = Number.isFinite(durAttr) ? durAttr : DEFAULT_DURATION;
-            fadeFromBackground(node, duration);
-        });
-    }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
-    } else {
-        init();
-    }
-})();
+		// position panels after initial render
+		positionPanels();
+});
