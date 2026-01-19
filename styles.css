@@ -237,3 +237,169 @@ body {
     z-index: 1;
     pointer-events: none;
 }
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+    body {
+        background-image: none;
+        background-color: #f0f0f0;
+    }
+
+    .tab-panel::before {
+        background-image: none;
+    }
+
+    .top-bar {
+        height: auto;
+        padding: 8px 0;
+    }
+
+    .top-bar .logo {
+        padding: 8px 12px;
+        font-size: 16px;
+    }
+
+    .top-bar .logo img {
+        height: 32px;
+        width: auto;
+    }
+
+    .top-tabs {
+        top: 60px;
+        left: 0;
+        width: 100%;
+        overflow-x: auto;
+        padding: 0 8px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+
+    .top-tabs .tab {
+        font-size: 14px;
+        padding: 6px 10px;
+        margin-right: 0;
+        white-space: nowrap;
+    }
+
+    .lang-switch {
+        top: 12px;
+        right: 8px;
+    }
+
+    .lang-switch button.toggle {
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+
+    .tab-panel {
+        top: 120px;
+        height: calc(100% - 120px - 60px);
+        overflow-y: auto;
+    }
+
+    .tab-panel p {
+        padding: 20px;
+        margin: 0;
+        width: 100%;
+        height: auto;
+        font-size: 16px;
+        background-position: center center;
+        background-size: 60%;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 12px;
+        padding: 20px;
+        height: auto;
+    }
+
+    .gallery-item {
+        aspect-ratio: 1;
+    }
+
+    .bottom-bar {
+        padding: 8px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+    }
+
+    .bottom-bar img {
+        height: 40px;
+        width: auto;
+    }
+
+    body {
+        background-size: 200% auto;
+        background-attachment: scroll;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        background-image: none;
+        background-color: #f0f0f0;
+    }
+
+    .tab-panel::before {
+        background-image: none;
+    }
+
+    .top-bar .logo {
+        font-size: 14px;
+        padding: 6px 8px;
+    }
+
+    .top-bar .logo img {
+        height: 24px;
+    }
+
+    .top-tabs {
+        top: 50px;
+        padding: 0 4px;
+    }
+
+    .top-tabs .tab {
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+
+    .lang-switch {
+        top: 10px;
+        right: 4px;
+    }
+
+    .lang-switch button.toggle {
+        font-size: 10px;
+        padding: 3px 6px;
+    }
+
+    .tab-panel {
+        top: 100px;
+        height: calc(100% - 100px - 50px);
+    }
+
+    .tab-panel p {
+        padding: 15px;
+        font-size: 14px;
+        background-position: center center;
+        background-size: 70%;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 8px;
+        padding: 12px;
+    }
+
+    .bottom-bar {
+        padding: 6px;
+        height: 50px;
+    }
+
+    .bottom-bar img {
+        height: 32px;
+    }
+}
