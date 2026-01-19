@@ -3,7 +3,7 @@ body {
     display: flex;
     background-color: transparent;
     /* gradient (top) then image (below). Use rgba for alpha values. */
-    background-image: url("/images/hero.png");
+    background-image: url("images/hero.png");
     background-position: center 35%;
     background-repeat: no-repeat;
     background-size: 118% auto;
