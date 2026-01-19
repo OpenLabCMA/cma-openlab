@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				// Wait for fade-out animation to complete before hiding
 				setTimeout(() => {
 					p.hidden = true;
-				}, 200); // Match the 0.5s transition duration
+				}, 500); // Match the 0.5s transition duration
 			}
 		});
 	}
