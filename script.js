@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			if (isActive) {
 				p.hidden = false;
 				if (pText) {
-					// Randomly select turtle image for specific tabs
+					// Randomly select turtl1-2-3 image for specific tabs
 					if (['intro', 'guidelines', 'staff'].includes(id)) {
 						pText.style.backgroundImage = `url(images/${getRandomTurtleImage()})`;
 					}
