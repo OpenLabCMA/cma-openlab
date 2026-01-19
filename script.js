@@ -20,6 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		window.addEventListener('orientationchange', positionPanels);
 		window.addEventListener('load', positionPanels);
 
+	function getRandomTurtleImage() {
+		const turtles = ['turtl1.png', 'turtl2.png', 'turtl3.png'];
+		return turtles[Math.floor(Math.random() * turtles.length)];
+	}
+
 	function activate(id) {
 		tabs.forEach(t => {
 			const isActive = t.dataset.tab === id;
@@ -29,13 +34,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		panels.forEach(p => {
 			const isActive = p.dataset.tabpanel === id;
+			const pText = p.querySelector('p');
 			if (isActive) {
 				p.hidden = false;
+				if (pText) {
+					// Randomly select turtle image for specific tabs
+					if (['intro', 'guidelines', 'staff'].includes(id)) {
+						pText.style.backgroundImage = `url(images/${getRandomTurtleImage()})`;
+					}
+					pText.classList.add('fade-out');
+					// Force reflow to trigger transition from opacity 0 to 1
+					void pText.offsetWidth;
+					pText.classList.remove('fade-out');
+				}
 			} else {
+				// Add fade-out class to text content
+				if (pText) {
+					pText.classList.add('fade-out');
+				}
 				// Wait for fade-out animation to complete before hiding
 				setTimeout(() => {
 					p.hidden = true;
-				}, 500); // Match the 0.5s fadeOut duration
+				}, 200); // Match the 0.5s transition duration
 			}
 		});
 	}
