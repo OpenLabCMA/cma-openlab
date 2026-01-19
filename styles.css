@@ -77,7 +77,6 @@ body {
     font-weight: 600;
     font-size: 20px;
     text-decoration: none;
-    box-shadow: none;
     transition: background .22s, color .22s;
     z-index: 5001;
 }
@@ -153,7 +152,7 @@ body {
 
 /* Panels for the main tabs */
 .tab-panel {
-    animation: fadeIn 0.5s forwards;
+    animation: fadeIn 0.2s normal;
     position: fixed;
     top: 0;
     left: 0;
@@ -164,7 +163,7 @@ body {
 }
 
 .tab-panel[hidden] {
-    animation: fadeOut 0.5s forwards;
+    animation: fadeIn 0.5s reverse;
     pointer-events: none;
 }
 
@@ -221,7 +220,7 @@ body {
     background-image: url(images/turtl.png);
     background-repeat: no-repeat;
     position: relative;
-    background-position: right 0px bottom 50%;
+    background-position: right 0px bottom 45%;
     background-size: 25%;
     z-index: 5002;
 
