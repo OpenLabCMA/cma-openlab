@@ -28,7 +28,15 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 
 		panels.forEach(p => {
-			p.hidden = p.dataset.tabpanel !== id;
+			const isActive = p.dataset.tabpanel === id;
+			if (isActive) {
+				p.hidden = false;
+			} else {
+				// Wait for fade-out animation to complete before hiding
+				setTimeout(() => {
+					p.hidden = true;
+				}, 500); // Match the 0.5s fadeOut duration
+			}
 		});
 	}
 
