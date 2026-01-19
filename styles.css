@@ -3,7 +3,7 @@ body {
     display: flex;
     background-color: transparent;
     /* gradient (top) then image (below). Use rgba for alpha values. */
-    background-image: url("../images/hero.png");
+    background-image: url("/images/hero.png");
     background-position: center 35%;
     background-repeat: no-repeat;
     background-size: 118% auto;
@@ -17,6 +17,7 @@ body {
     0% {
         opacity: 0;
     }
+
     100% {
         opacity: 1;
     }
@@ -188,6 +189,7 @@ body {
     opacity: 0;
     pointer-events: none;
 }
+
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -227,7 +229,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(135deg, rgba(177, 190, 229, 0.6), rgba(200, 180, 220, 0.5)), url("../images/hero.png");
+    background-image: linear-gradient(135deg, rgba(177, 190, 229, 0.6), rgba(200, 180, 220, 0.5)), url("/images/hero.png");
     background-position: center 35%;
     background-size: 118% auto;
     background-repeat: no-repeat;
