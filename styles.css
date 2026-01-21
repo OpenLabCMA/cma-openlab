@@ -1,18 +1,38 @@
 /* styles.css */
+:root {
+    --font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    --dark-bg: #111827;
+    --dark-blue: rgb(18, 24, 38);
+    --text-dark: rgb(4, 12, 43);
+    --text-light: #fff;
+    --z-bg: -1;
+    --z-body: 0;
+    --z-tab-content: 5002;
+    --z-tabs: 6000;
+    --z-panel: 4000;
+    --z-top: 9999;
+}
+
+@keyframes bgFadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes blrFadeIn {
+    0% { filter: blur(0); }
+    100% { filter: blur(35px); }
+}
 
 body::before {
     content: "";
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
+    inset: 0;
+    z-index: var(--z-bg);
     background-size: 118% auto;
-    animation: blrFadeIn 1s ease-in forwards;
     background-image: linear-gradient(135deg, rgba(177, 190, 229, 0.6), rgba(200, 180, 220, 0.5)), url("./images/hero.png");
     background-position: center 35%;
     background-repeat: no-repeat;
+    animation: blrFadeIn 1s ease-in forwards;
 }
 
 body {
@@ -20,53 +40,37 @@ body {
     display: flex;
     background-color: transparent;
     background-attachment: fixed;
-    
-    z-index: 0;
+    z-index: var(--z-body);
 }
 
-@keyframes bgFadeIn {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-
-@keyframes blrFadeIn {
-    0% {
-        filter: blur(0);
-    }
-
-    100% {
-        filter: blur(35px);
-    }
+.top-bar,
+.top-tabs {
+    font-family: var(--font-family);
+    animation: bgFadeIn 1s ease-in forwards;
 }
 
 .top-bar {
     position: fixed;
     top: 0;
-    height: 72px;
     width: 100%;
-    background-color: #111827;
-    text-align:left;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    z-index: 9999;
-    animation: bgFadeIn 1s ease-in forwards;
+    height: 72px;
+    background-color: var(--dark-bg);
+    text-align: left;
+    z-index: var(--z-top);
 }
 
 .top-bar .logo {
-    padding: 0px;
+    padding: 0;
     font-size: 24px;
-    color: white;
+    color: var(--text-light);
     font-family: "helvetica-neue", sans-serif;
     text-decoration: none;
-    z-index: 9999;
+    z-index: var(--z-top);
 }
+
 .top-bar-title {
     display: inline-block;
-    color: white;
+    color: var(--text-light);
     font-size: 24px;
     font-weight: bold;
     margin-left: 8px;
@@ -85,12 +89,8 @@ body {
     position: fixed;
     top: 84px;
     left: 0.25%;
-    z-index: 6000;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    z-index: var(--z-tabs);
     user-select: none;
-    animation: bgFadeIn 1s ease-in forwards;
-
-    
 }
 
 .top-tabs .tab {
@@ -98,65 +98,55 @@ body {
     align-items: center;
     gap: 8px;
     margin-right: 6px;
-    background: transparent;
-    color: #111827;
+    padding: 8px 12px;
     border: none;
     border-radius: 8px;
-    padding: 8px 12px;
-    cursor: pointer;
+    background: transparent;
+    color: var(--dark-bg);
     font-weight: 600;
     font-size: 20px;
     text-decoration: none;
-    transition: background .25s, color .25s;
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s;
     z-index: 5001;
-    
 }
 
-.top-tabs .tab:hover {
-    background: rgba(18, 24, 38);
-    border-radius: 8px;
-    color: white;
-}
-
+.top-tabs .tab:hover,
 .top-tabs .tab.active,
 .top-tabs .tab[aria-selected="true"] {
-    background: #111827;
-    color: #fff;
+    background: var(--dark-bg);
+    color: var(--text-light);
 }
 
 /* Panels for the main tabs */
 .tab-panel {
     position: fixed;
-    top: 0;
-    left: 0;
+    inset: 0;
     padding: 0;
-    z-index: 4000;
+    z-index: var(--z-panel);
     width: 100%;
-        animation: bgFadeIn 2s ease-in forwards;
-
+    animation: bgFadeIn 2s ease-in forwards;
 }
 
 .tab-panel p {
-    color: rgb(4, 12, 43);
     position: fixed;
     width: 100%;
     height: 100%;
-    white-space: pre-wrap;
+    color: var(--text-dark);
+    font-family: var(--font-family);
     font-size: 20px;
-    line-height: 1.5;
     font-weight: 400;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    line-height: 1.5;
+    white-space: pre-wrap;
     background: transparent;
-    box-sizing: border-box;
     background-repeat: no-repeat;
     background-position: right 2% bottom 50%;
     background-size: 25%;
-    z-index: 5002;
+    box-sizing: border-box;
+    z-index: var(--z-tab-content);
     opacity: 1;
     transition: opacity 0.25s ease;
 }
-
-
 
 .tab-panel p.fade-out {
     opacity: 0;
@@ -172,7 +162,9 @@ body {
     height: 100%;
     box-sizing: border-box;
     position: relative;
-    z-index: 5002;
+    z-index: var(--z-tab-content);
+        transition: opacity 0.25s ease;
+
 }
 
 .gallery-item {
@@ -195,23 +187,25 @@ body {
     transform: scale(1.05);
 }
 
-
 .bottom-bar {
     position: fixed;
     bottom: 0;
     width: 100%;
     padding: 1%;
-    background: rgb(18, 24, 38);
-    color: rgb(255, 255, 255);
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    z-index: 9999;
+    background: var(--dark-blue);
+    color: var(--text-light);
+    font-family: var(--font-family);
+    z-index: var(--z-top);
 }
+
 
 /* Mobile Responsive Design */
 @media (max-width: 768px) {
     body {
         background-image: none;
         background-color: #f0f0f0;
+        background-size: 200% auto;
+        background-attachment: scroll;
     }
 
     .tab-panel::before {
@@ -227,31 +221,31 @@ body {
         top: 60px;
         left: 0;
         width: 100%;
-        overflow-x: auto;
         padding: 0 8px;
+        overflow-x: auto;
         display: flex;
         flex-wrap: wrap;
         gap: 4px;
     }
 
     .top-tabs .tab {
-        font-size: 14px;
-        padding: 6px 10px;
         margin-right: 0;
+        padding: 6px 10px;
+        font-size: 14px;
         white-space: nowrap;
     }
 
     .tab-panel {
         top: 120px;
-        height: calc(100% - 120px - 60px);
+        height: calc(100% - 180px);
         overflow-y: auto;
     }
 
     .tab-panel p {
-        padding: 20px;
-        margin: 0;
         width: 100%;
         height: auto;
+        padding: 20px;
+        margin: 0;
         font-size: 16px;
         background-position: center center;
         background-size: 60%;
@@ -264,10 +258,6 @@ body {
         height: auto;
     }
 
-    .gallery-item {
-        aspect-ratio: 1;
-    }
-
     .bottom-bar {
         padding: 8px;
         height: 60px;
@@ -278,11 +268,6 @@ body {
     .bottom-bar img {
         height: 40px;
         width: auto;
-    }
-
-    body {
-        background-size: 200% auto;
-        background-attachment: scroll;
     }
 }
 
@@ -297,8 +282,8 @@ body {
     }
 
     .top-bar .logo {
-        font-size: 14px;
         padding: 6px 8px;
+        font-size: 14px;
     }
 
     .top-bar .logo img {
@@ -311,8 +296,8 @@ body {
     }
 
     .top-tabs .tab {
-        font-size: 12px;
         padding: 4px 8px;
+        font-size: 12px;
     }
 
     .lang-switch {
@@ -321,13 +306,13 @@ body {
     }
 
     .lang-switch button.toggle {
-        font-size: 10px;
         padding: 3px 6px;
+        font-size: 10px;
     }
 
     .tab-panel {
         top: 100px;
-        height: calc(100% - 100px - 50px);
+        height: calc(100% - 150px);
     }
 
     .tab-panel p {
