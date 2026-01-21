@@ -1,14 +1,26 @@
+/* styles.css */
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-size: 118% auto;
+    animation: blrFadeIn 1s ease-in forwards;
+    background-image: linear-gradient(135deg, rgba(177, 190, 229, 0.6), rgba(200, 180, 220, 0.5)), url("./images/hero.png");
+    background-position: center 35%;
+    background-repeat: no-repeat;
+}
+
 body {
     margin: 0;
     display: flex;
     background-color: transparent;
-    background-image: url("./images/hero.png");
-    background-position: center 35%;
-    background-repeat: no-repeat;
-    background-size: 118% auto;
-    min-height: 100vh;
     background-attachment: fixed;
-    animation: bgFadeIn 2s ease-in forwards;
+    
     z-index: 0;
 }
 
@@ -22,45 +34,63 @@ body {
     }
 }
 
-.top-tabs {
-    position: fixed;
-    top: 8%;
-    left: 0.25%;
-    z-index: 6000;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    user-select: none;
+@keyframes blrFadeIn {
+    0% {
+        filter: blur(0);
+    }
+
+    100% {
+        filter: blur(35px);
+    }
 }
 
 .top-bar {
     position: fixed;
     top: 0;
+    height: 72px;
     width: 100%;
     background-color: #111827;
+    text-align:left;
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     z-index: 9999;
-}
-
-.bottom-bar {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    padding: 1.25%;
-    background: rgb(18, 24, 38);
-    color: white;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    z-index: 9999;
+    animation: bgFadeIn 1s ease-in forwards;
 }
 
 .top-bar .logo {
-    display: inline-block;
-    padding: 16px;
-    font-weight: bold;
-    text-decoration: none;
+    padding: 0px;
     font-size: 24px;
     color: white;
     font-family: "helvetica-neue", sans-serif;
+    text-decoration: none;
     z-index: 9999;
+}
+.top-bar-title {
+    display: inline-block;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 8px;
+    vertical-align: middle;
+    text-decoration: none;
+}
 
+.top-bar .logo img {
+    height: 64px;
+    width: auto;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+.top-tabs {
+    position: fixed;
+    top: 84px;
+    left: 0.25%;
+    z-index: 6000;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    user-select: none;
+    animation: bgFadeIn 1s ease-in forwards;
+
+    
 }
 
 .top-tabs .tab {
@@ -71,14 +101,15 @@ body {
     background: transparent;
     color: #111827;
     border: none;
-    padding: 8px 12px;
     border-radius: 8px;
+    padding: 8px 12px;
     cursor: pointer;
     font-weight: 600;
     font-size: 20px;
     text-decoration: none;
-    transition: background .5s, color .5s;
+    transition: background .25s, color .25s;
     z-index: 5001;
+    
 }
 
 .top-tabs .tab:hover {
@@ -93,96 +124,39 @@ body {
     color: #fff;
 }
 
-.lang-switch {
-    position: fixed;
-    top: 1.5%;
-    right: 12px;
-    z-index: 9999;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    user-select: none;
-}
-
-.lang-switch button.toggle {
-    background: #111827;
-    color: #fff;
-    border: none;
-    padding: 6px 10px;
-    border-radius: 999px;
-    cursor: pointer;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    font-weight: 600;
-    font-size: 13px;
-}
-
-.lang-switch ul {
-    margin: 8px 0 0 0;
-    padding: 6px;
-    list-style: none;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    min-width: 120px;
-}
-
-.lang-switch li+li {
-    margin-top: 6px;
-}
-
-.lang-switch button.lang {
-    display: block;
-    width: 100%;
-    text-align: left;
-    background: transparent;
-    border: none;
-    padding: 6px 8px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 13px;
-}
-
-.lang-switch button.lang[aria-pressed="true"] {
-    background: #f3f4f6;
-    font-weight: 700;
-}
-
-.lang-switch [hidden] {
-    display: none;
-}
-
 /* Panels for the main tabs */
 .tab-panel {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
     padding: 0;
-    z-index: 5000;
+    z-index: 4000;
+    width: 100%;
+        animation: bgFadeIn 2s ease-in forwards;
+
 }
 
 .tab-panel p {
-    color: rgb(18, 24, 38);
-    position: relative;
+    color: rgb(4, 12, 43);
+    position: fixed;
     width: 100%;
     height: 100%;
-    padding: 0 40px 40px 40px;
-    margin: 5% auto 5% auto;
     white-space: pre-wrap;
     font-size: 20px;
-    font-weight: 400;
     line-height: 1.5;
+    font-weight: 400;
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     background: transparent;
-    z-index: 1;
     box-sizing: border-box;
     background-repeat: no-repeat;
     background-position: right 2% bottom 50%;
     background-size: 25%;
     z-index: 5002;
     opacity: 1;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.25s ease;
 }
+
+
 
 .tab-panel p.fade-out {
     opacity: 0;
@@ -221,21 +195,16 @@ body {
     transform: scale(1.05);
 }
 
-.tab-panel::before {
-    content: '';
-    position: absolute;
-    top: -10%;
-    left: 0;
+
+.bottom-bar {
+    position: fixed;
+    bottom: 0;
     width: 100%;
-    height: 100%;
-    background-image: linear-gradient(135deg, rgba(177, 190, 229, 0.6), rgba(200, 180, 220, 0.5)), url("./images/hero.png");
-    background-position: center 35%;
-    background-size: 118% auto;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    filter: blur(18px) saturate(30%);
-    z-index: 1;
-    pointer-events: none;
+    padding: 1%;
+    background: rgb(18, 24, 38);
+    color: rgb(255, 255, 255);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    z-index: 9999;
 }
 
 /* Mobile Responsive Design */
@@ -254,16 +223,6 @@ body {
         padding: 8px 0;
     }
 
-    .top-bar .logo {
-        padding: 8px 12px;
-        font-size: 16px;
-    }
-
-    .top-bar .logo img {
-        height: 32px;
-        width: auto;
-    }
-
     .top-tabs {
         top: 60px;
         left: 0;
@@ -280,16 +239,6 @@ body {
         padding: 6px 10px;
         margin-right: 0;
         white-space: nowrap;
-    }
-
-    .lang-switch {
-        top: 12px;
-        right: 8px;
-    }
-
-    .lang-switch button.toggle {
-        font-size: 11px;
-        padding: 4px 8px;
     }
 
     .tab-panel {
@@ -353,7 +302,7 @@ body {
     }
 
     .top-bar .logo img {
-        height: 24px;
+        height: 14px;
     }
 
     .top-tabs {
